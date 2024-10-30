@@ -4,12 +4,17 @@ import (
 	"testing"
 )
 
-const testVIN = "W09000051T2123456"
+const (
+	validVIN   = VIN("W0L000051T2123456")
+	invalidVIN = VIN("W0")
+)
 
 func TestVIN_Manufacturer(t *testing.T) {
 
-	manufacturer := Manufacturer(testVIN)
-	if manufacturer != "W09123" {
-		t.Errorf("unexpected manufacturer %s for VIN %s", manufacturer, testVIN)
+	manufacturer := validVIN.Manufacturer()
+	if manufacturer != "W0L" {
+		t.Errorf("unexpected manufacturer %s for VIN %s", manufacturer, validVIN)
 	}
+
+	invalidVIN.Manufacturer() // panic!
 }

@@ -1,13 +1,13 @@
 package vin
 
-func Manufacturer(vin string) string {
+type VIN string
 
-	manufacturer := vin[:3]
-	// if the last digit of the manufacturer ID is a 9
-	// the digits 12 to 14 are the second part of the ID
+func (v VIN) Manufacturer() string {
+
+	manufacturer := v[:3]
 	if manufacturer[2] == '9' {
-		manufacturer += vin[11:14]
+		manufacturer += v[11:14]
 	}
 
-	return manufacturer
+	return string(manufacturer)
 }
